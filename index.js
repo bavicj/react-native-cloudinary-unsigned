@@ -27,7 +27,7 @@ class RNCloudinaryUnsigned {
       }
     });
   };
-  upload = (file, filename = null) => {
+  upload = (file, filename = null, folder = null) => {
     return new Promise((resolve, reject) => {
       if (CLOUD_NAME && UPLOAD_PROFILE_NAME) {
         if (file) {
@@ -43,6 +43,9 @@ class RNCloudinaryUnsigned {
               uri: file,
               type: type.mime
             });
+            if (folder) {
+              fd.append("folder", folder);
+            }  
             const config = {
               headers: {
                 "Content-Type": "multipart/form-data"
